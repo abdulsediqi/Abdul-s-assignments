@@ -1,0 +1,122 @@
+---
+title: "COMPSCIX 415.2 Homework 2"
+author: "abdul sediqi"
+date: "March 4, 2018"
+output: html_document
+---
+# Section 3.2.4
+```{r setup, include=FALSE}
+1.
+library(ggplot2)
+ggplot(data = mpg)
+```
+
+```{r}
+2. 
+?mpg
+```
+
+```{r}
+3. 
+### The drv variable describes as a categorical variable that represents whether the vehicle is 4wd, front-wheel drive, or rear-wheel drive.
+```
+
+```{r}
+4. 
+ggplot(data = mpg) + geom_point(mapping = aes(x = cyl, y = hwy))
+```
+
+```{r}
+5. 
+ggplot(data = mpg) + geom_point(mapping = aes(x = drv, y = class))
+
+### For that scatterplot, the relationships between drv and class is not all that useful. In addition, they are both categorical variables.
+```
+
+
+# Section 3.3.1
+
+1. 
+### The points are not blue because it is mapped in the variables instead of the aes(). It has to be outside the aes function.
+
+```{r}
+2. 
+?mpg
+```
+### Categorical variables are: manufacturer; model; cyl; trans; drv; ???; and class. Continuous variables are: displ; year; city; and hwy as quantitative variables. 
+
+
+```{r}
+3. 
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy, shape = trans))
+```
+
+```{r}
+4. 
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy, color = cty, size = cty))
+```
+### When you map multiple aesthetics to the same variable, all aesthetics are plotted toghether  and the key  is given for each one.
+
+
+
+5. 
+### From the help???le for geom_point(), there is an example at the bottom that describes that the stroke aesthetic can control the width of the border around the plotting points. From the cheatsheet it looks like the stroke aesthetic only works for geom_point() and geom_count().
+
+```{r}
+6.
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy, color = displ < 5))
+```
+### By plotting the points when the displ < 5, it assigns the colors between the true and false variables. 
+ 
+
+# Section 3.5.1
+```{r}
+
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy)) + facet_wrap(~ class, nrow = 2)
+```
+#### 4) The faceting can help reveal patterns which exist when broken down by categories. These patterns would otherwise be masked by the overlapping of points. For example, 2-seaters and compact cars are clumped together in a certain region of space corresponding to their engine size and gas mileage. This can sometimes be more useful than colors if there is a lot more data with overlapping points. On the other hand, we will not be able to observe any global relationships that may exist, but this is easily remedied by looking at a simple scatterplot.
+
+
+5. 
+### The nrow and ncol arguments describe how many rows and columns, respectively, the panels will be placed in. The as.table and dir arguments can also help you control the layout. facet_grid doesn't use these arguments because you have to de???ne your row and column facetting variables explicitly.
+
+
+# Section 3.6.1
+
+
+1. 
+### Line charts can be plotted with geom_line(), histograms with geom_histogram, boxplots with geom_boxplot(), and area charts with geom_area.
+
+
+
+```{r}
+2. 
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + geom_point() + geom_smooth(se = FALSE)
+```
+
+```{r}
+3. 
+
+ggplot(data = mpg) + geom_smooth( mapping = aes(x = displ, y = hwy, color = drv), show.legend = FALSE ) 
+```
+
+
+```{r}
+ggplot(data = mpg) + geom_smooth( mapping = aes(x = displ, y = hwy, color = drv), show.legend = FALSE ) 
+```
+### 4. show.legend = FALSE is to remove the key in the plot. geom_smooth is to describe the points that lie within the confidence intervals around the smoothed lines.
+
+
+
+### 5. By comparing the ???rst set of code the two geoms will use the same mapping that is de???ned in the ggplot() function. It's a useful way to write less code. There isn't much differences.
+
+
+
+# Section 3.7.2
+
+
+#### geom_col() will also plot a bar chart, but it uses the data itself in order to de???ne the heights of the bars. There aren't any statistical transformations of the data to construct the bar plots.
+
+#### By comparing the differences between the Data Science and Business Intelligence professionals, the overlapped circles have indicated that they want to do something spectacular. The designers were doing more of a cute design rather than making the decisions being more communicative and interpretable. There are also concerns on choice of color as well. The choice has been poor and that bar plots should have been the best choice by the user.
+
